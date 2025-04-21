@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 
 
@@ -11,7 +12,7 @@ def home():
 def about():
     return render_template('about.html')
 
-app.secret_key = 'your_secret_key'  # add this if not already set
+app.secret_key = os.environ.get("SECRET_KEY", "dev_key")
 
 @app.route('/hello/<name>', methods=['GET', 'POST'])
 def hello(name):
